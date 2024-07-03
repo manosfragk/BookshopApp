@@ -58,12 +58,16 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 	  <None Remove="Dockerfile" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Include="Dockerfile" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<None Include="Dockerfile" />
 	</ItemGroup>
 
 	<ItemGroup>
