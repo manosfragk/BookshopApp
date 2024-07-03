@@ -14,17 +14,17 @@
 		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
 
 		<OutputType>Exe</OutputType>
-		<RootNamespace>BookshopApp</RootNamespace>
+		<RootNamespace>BookshopApp.Presentation</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>BookshopApp</ApplicationTitle>
+		<ApplicationTitle>BookshopApp.Presentation</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.bookshopapp</ApplicationId>
+		<ApplicationId>com.companyname.bookshopapp.presentation</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -36,6 +36,8 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		
+		<GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -57,9 +59,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BookshopApp.Application\BookshopApp.Application.csproj" />
+	  <ProjectReference Include="..\BookshopApp.Infrastructure\BookshopApp.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>
