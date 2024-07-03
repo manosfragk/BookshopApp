@@ -1,11 +1,13 @@
-﻿namespace BookshopApp.Presentation;
+﻿using Microsoft.Maui.Controls;
+using System;
+namespace BookshopApp.Presentation;
 
-public partial class App : Application
+public partial class App : Microsoft.Maui.Controls.Application
 {
 	public App()
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+        MainPage = new MainPage();
+    }
 }

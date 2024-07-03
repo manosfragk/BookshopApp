@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BookshopApp.Application.Services;
+using BookshopApp.Core.Interfaces;
+using Microsoft.Extensions.Logging;
+using System;
+using BookshopApp.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookshopApp.Presentation;
 
@@ -19,6 +24,12 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        // Register dependencies
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlite("Data Source=bookshop.db"));
+        builder.Services.AddScoped<IBookRepository, BookRepository>();
+        builder.Services.AddScoped<BookService>();
+
+        return builder.Build();
 	}
 }
