@@ -8,6 +8,7 @@ trigger:
 
 pool:
   vmImage: 'windows-latest'
+  parallel: false
 
 variables:
   solution: '**/*.sln'
@@ -15,6 +16,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
