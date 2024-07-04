@@ -4,11 +4,11 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- master
+- main  # Assuming you renamed "master" branch to "main"
 
 pool:
   vmImage: 'windows-latest'
-  parallel: false
+  parallel: false  # Keep parallel disabled for now
 
 variables:
   solution: '**/*.sln'
@@ -16,9 +16,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-# - task: DotNetCoreCLI@2
-#   inputs:
-#     command: 'build'
+- task: DotNetCoreCLI@2  # Added the missing task
+  inputs:
+    command: 'build'
+    projects: '$(solution)'  # Optional: Specify projects within the solution
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -32,7 +34,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+- task: VSTest@2  # Assuming you have unit tests
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
